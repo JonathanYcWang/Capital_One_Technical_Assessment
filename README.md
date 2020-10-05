@@ -1,10 +1,11 @@
 # Introduction
 Hey!
+
 Bellow, you can find an all incluive guide my Comment Counter where I outline how to run the program, the testing suite, program flow and assumptions made. As someone who something, I hope to provide a one stop shop for anyone looking to run the program without addiioal informtion
 Clear and concise documentation is an invaluavle resource especially during 
 
 # How to run
-The program is writen in **Python 3.8.2** so make sure the version is installed and part of your machine's enviroment variable \
+The program is writen in **Python 3.8.2** so make sure the version is installed and part of your machine's enviroment variable 
 
 To run from the terminal or command prompt, make sure to be **within this file directory** and execute the following command:
 
