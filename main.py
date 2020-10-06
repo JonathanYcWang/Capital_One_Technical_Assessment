@@ -106,12 +106,7 @@ def scanComments(fileContent, singleComment, multiCommentStart, multiCommentEnd)
     
     return totalSingleComments, totalBlockCommentLines, totalBlockComments, totalTodos, totalComments
 
-
-if __name__ == "__main__":
-    
-    if len(sys.argv) != 2:
-        sys.exit("Invalid number of arguments")
-    file = sys.argv[1]
+def countComments(file):
 
     #Read in provided file
     fileName = fileIsValid(file)
@@ -121,14 +116,24 @@ if __name__ == "__main__":
 
     #Get all the content in the file
     content = getFileContent(file)
+    totalLines = len(content)
+    
     totalSingleComments, totalBlockCommentLines, totalBlockComments, totalTodos, totalComments = scanComments(content,singleComment, multiCommentStart, multiCommentEnd)
-
-    print("Total number of lines: {}".format(len(content)))
+    print("Total number of lines: {}".format(totalLines))
     print("Total number of comment lines: {}".format(totalComments))
     print("Total number of single line comments: {}".format(totalSingleComments))
     print("Total number of comment lines within block comments: {}".format(totalBlockCommentLines))
     print("Total number of block line comments: {}".format(totalBlockComments))
     print("Total number of TODO’s: {}".format(totalTodos))
+    return [totalLines, totalSingleComments, totalBlockCommentLines, totalBlockComments, totalTodos, totalComments]
+    
+
+if __name__ == "__main__":
+    
+    if len(sys.argv) != 2:
+        sys.exit("Invalid number of arguments")
+
+    countComments(sys.argv[1])
 
 
     
