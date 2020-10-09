@@ -38,9 +38,16 @@ class TestCommentCounter(unittest.TestCase):
         with self.assertRaises(SystemExit) as cm:
             countComments("./test_files/noExtensions")
         self.assertEqual(cm.exception.code, "File does not contain an extension")
+
+    def testFileExtensionNotSupported(self):
+        print("Test 5: File extension not found in extensionsAndCommentFormats.csv \n")
+        with self.assertRaises(SystemExit) as cm:
+            countComments("./test_files/unSuportedExample.txt")
+        self.assertEqual(cm.exception.code, "File format not supported")
         
     
 if __name__ == "__main__":
+    
     unittest.main()
 
 

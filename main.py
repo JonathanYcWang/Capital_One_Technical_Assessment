@@ -93,7 +93,7 @@ def scanComments(fileContent, singleComment, multiCommentStart, multiCommentEnd)
                 
             elif inBlockComment:
                 totalBlockCommentLines += 1
-
+ 
         #check for single line comments
         if singleComment and singleComment in line and not inBlockComment:
             totalSingleComments += 1
@@ -112,7 +112,7 @@ def countComments(file):
     fileName = fileIsValid(file)
 
     #Import comment format
-    singleComment, multiCommentStart, multiCommentEnd = getCommentFormat("extensions_and_comment_formats.csv", fileName)
+    singleComment, multiCommentStart, multiCommentEnd = getCommentFormat("extensionsAndCommentFormats.csv", fileName)
 
     #Get all the content in the file
     content = getFileContent(file)
