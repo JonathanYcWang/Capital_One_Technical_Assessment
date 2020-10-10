@@ -33,9 +33,13 @@ However files that do not contain an extension or are hidden (aka start with a â
     - Contains multiline end comment.
     - Conatinas single comment.
 
-6. Additionally at each line regardless of comment type, check for ToDos.
+6. Once a comment is found in a line, check if it is a valid comment or just a comment symbol within a string. 
 
-7. Once every line is scanned, print and return the totals.
+7. If it is a valid comment, increment the appropriate counters.
+
+8. Additionally at each line regardless of comment type, check for ToDos.
+
+9. Once every line is scanned, print and return the totals.
 
 
 ## Format of `extensionsAndCommentFormats.csv`
@@ -96,7 +100,7 @@ File Types: *Java, Python, Javascript, HTML, CSS, HTML, SQL*
  
  
 # Assumptions
-- While in the Python example the single line comment, #, is considered a block comment if they are presented consecutively. However I am treating those as single comment still given Python has a block comment syntax of ''' which the program will be treating as multiline comment.
+- For languages like Python for example with only a single comment symbol per the provided example, will treat a series of consecutive single comments as a block comment and each line within it a block comment line.
  
 - Files will not contain nested comments within block comments, otherwise the nested comment will only be counted as an inline comment rather than a seperate single or block comment.
  
@@ -106,8 +110,6 @@ File Types: *Java, Python, Javascript, HTML, CSS, HTML, SQL*
 - Block comments can start at the end of a line of code.
  
 - Programming languages that this program will be checking only those that have a structure of at most a single line comments, multiline comments or both. It will not account for languages that use more than 3 types of symbols to write comments.
-
-
 
 # Thank you
 Lastly thank you for taking the time to review my application! Hopefully my documentation here helped save you some time in understanding my approach when tackling this technical assessment and gave insight on my thought process when working through it.

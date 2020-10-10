@@ -11,8 +11,8 @@ class TestCommentCounter(unittest.TestCase):
                      "htmlExample.html" : [27, 2, 5, 1, 1, 7],
                      "javaExample.java" : [60, 6, 22, 2, 1, 28],
                      "javaScriptExample.js":  [40, 6, 17, 3, 1, 23],
-                     "pythonExample.py" : [61, 23, 0, 0, 3, 23],
-                     "sqlExample.sql" : [7, 2, 2, 1, 0, 4]
+                     "pythonExample.py" : [61, 9, 10, 3, 3, 19],
+                     "sqlExample.sql" : [7, 0, 4, 2, 0, 4]
                      }
         
         for file in fileNames.keys():

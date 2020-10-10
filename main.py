@@ -60,6 +60,29 @@ def getFileContent(path):
     f.close()
     return fileContent
 
+def isComment(commentIndex, line):
+    '''
+    (int, str[]) -> bool
+    
+    Given a line containing a comment and the index of the comment symbol.
+
+    Return if it is a valid comment or if it is just a comment symbol within a string.
+    '''
+    strings = {"'", '''"'''}
+    leftCheck = True
+    rightCheck = True
+
+    leftPointer = commentIndex
+    rightPointer = commentIndex
+    while rightPointer < len(line) and leftPointer >= 0:
+        if line[leftPointer] in strings:
+            leftPointer = not leftPointer
+        if line[rightPointer] in strings:
+            rightPointer = not rightPointer
+        rightPointer += 1
+        leftPointer -= 1
+    return leftCheck and rightCheck
+
 def scanComments(fileContent, singleComment, multiCommentStart, multiCommentEnd):
     '''
     (str[], str str, str) -> int, int, int, int, int
@@ -75,33 +98,48 @@ def scanComments(fileContent, singleComment, multiCommentStart, multiCommentEnd)
     totalTodos = 0
 
     inBlockComment = False
+    tempCount = 0
 
     for line in fileContent:
+        line = line.strip()
         #check multi line comments
         if multiCommentStart and multiCommentEnd: 
-            if multiCommentStart in line and multiCommentEnd in line: #block comments that are only one line are treated as single line comments
+            if multiCommentStart in line and multiCommentEnd in line and isComment(line.find(multiCommentStart),line) and isComment(line.find(multiCommentEnd),line): #block comments that are only one line are treated as single line comments
                 totalSingleComments += 1
                 
-            elif multiCommentStart in line and not inBlockComment: #start of comment block
+            elif multiCommentStart in line and not inBlockComment and isComment(line.find(multiCommentStart),line): #start of comment block
                 inBlockComment = True
                 totalBlockCommentLines += 1
                 
-            elif multiCommentEnd in line and inBlockComment: #end of comment block
+            elif multiCommentEnd in line and inBlockComment and isComment(line.find(multiCommentEnd),line): #end of comment block
                 inBlockComment = False
                 totalBlockCommentLines += 1
                 totalBlockComments += 1
                 
             elif inBlockComment:
                 totalBlockCommentLines += 1
- 
+
         #check for single line comments
-        if singleComment and singleComment in line and not inBlockComment:
-            totalSingleComments += 1
+        if singleComment and not inBlockComment:
+            if singleComment in line[1:] and isComment(line.find(singleComment),line): 
+                totalSingleComments += 1 
+
+            if line.startswith(singleComment): 
+                tempCount += 1
+
+            elif tempCount == 1:
+                totalSingleComments += 1
+                tempCount = 0
+
+            elif tempCount > 0:
+                totalBlockCommentLines += tempCount
+                totalBlockComments += 1
+                tempCount = 0
 
         #check for ToDos
         if "TODO" in line:
             totalTodos += 1
-    
+
     totalComments = totalSingleComments + totalBlockCommentLines
     
     return totalSingleComments, totalBlockCommentLines, totalBlockComments, totalTodos, totalComments
