@@ -100,7 +100,7 @@ File Types: *Java, Python, Javascript, HTML, CSS, HTML, SQL*
  
  
 # Assumptions
-- For languages like Python for example with only a single comment symbol per the provided example, will treat a series of consecutive single comments as a block comment and each line within it a block comment line.
+- For languages like Python with only a single comment format,a series of consecutive single comments  will be treated as a block comment and each line within it a block comment line.
  
 - Files will not contain nested comments within block comments, otherwise the nested comment will only be counted as an inline comment rather than a seperate single or block comment.
  
@@ -112,4 +112,6 @@ File Types: *Java, Python, Javascript, HTML, CSS, HTML, SQL*
 - Programming languages that this program will be checking only those that have a structure of at most a single line comments, multiline comments or both. It will not account for languages that use more than 3 types of symbols to write comments.
 
 # Thank you
-Lastly thank you for taking the time to review my application! Hopefully my documentation here helped save you some time in understanding my approach when tackling this technical assessment and gave insight on my thought process when working through it.
+Lastly thank you for taking the time to review my application! 
+
+Hopefully my documentation here helped save you some time in understanding my approach when tackling this technical assessment and gave insight on my thought process when working through it.
